@@ -21,30 +21,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
     {'name': 'Special Motichoor Laddu', 'price': 400, 'quantity': 1},
   ];
 
-  double get totalAmount {
-    return orderSummary.fold(
-        0, (sum, item) => sum + item['price'] * item['quantity']);
-  }
+  double get subtotal => orderSummary.fold(
+      0, (sum, item) => sum + item['price'] * item['quantity']);
+  double get discount => subtotal * 0.1; // 10% Discount
+  double get totalAmount => subtotal - discount;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xfff9f6f1),
-      appBar: AppBar(
-        backgroundColor: const Color(0xff581f59),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          'Checkout',
-          style: GoogleFonts.aBeeZee(fontSize: 20, color: Colors.white),
-        ),
-        centerTitle: true,
-        elevation: 0,
-      ),
       body: Stack(
         children: [
           // Background Gradient
@@ -58,46 +43,50 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
           ),
 
-          // Checkout Content
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Delivery Address
-                  Text(
-                    'Delivery Address',
-                    style: GoogleFonts.aBeeZee(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+          Column(
+            children: [
+              // Header
+              Padding(
+                padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
-                          ),
-                        ),
+                    Text(
+                      'Checkout',
+                      style: GoogleFonts.aBeeZee(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 40),
+                  ],
+                ),
+              ),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildSectionHeader('Delivery Address'),
+                      buildGlassyContainer(
                         child: Row(
                           children: [
                             Expanded(
                               child: TextField(
                                 controller: addressController,
                                 style: const TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: 'Enter your address',
-                                  hintStyle:
-                                      const TextStyle(color: Colors.white70),
+                                  hintStyle: TextStyle(color: Colors.white70),
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -105,205 +94,84 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             IconButton(
                               icon: const Icon(Icons.edit,
                                   color: Colors.orangeAccent),
-                              onPressed: () {
-                                // Edit address logic
-                              },
+                              onPressed: () {},
                             ),
                           ],
                         ),
                       ),
-                    ),
-                  ),
 
-                  const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                  // Payment Options
-                  Text(
-                    'Payment Method',
-                    style: GoogleFonts.aBeeZee(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Column(
-                    children: [
-                      PaymentOption(
-                        title: 'Cash on Delivery',
-                        groupValue: selectedPaymentMethod,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedPaymentMethod = value!;
-                          });
-                        },
-                      ),
-                      PaymentOption(
-                        title: 'Credit/Debit Card',
-                        groupValue: selectedPaymentMethod,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedPaymentMethod = value!;
-                          });
-                        },
-                      ),
-                      PaymentOption(
-                        title: 'UPI',
-                        groupValue: selectedPaymentMethod,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedPaymentMethod = value!;
-                          });
-                        },
+                      buildSectionHeader('Payment Method'),
+                      buildPaymentOptions(),
+
+                      const SizedBox(height: 20),
+
+                      buildSectionHeader('Order Summary'),
+                      buildOrderSummary(),
+
+                      const SizedBox(height: 20),
+
+                      // Place Order Button
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const OrderConfirmationPage()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xfff69722),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          child: Text(
+                            'Place Order',
+                            style: GoogleFonts.aBeeZee(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
-
-                  const SizedBox(height: 20),
-
-                  // Order Summary
-                  Text(
-                    'Order Summary',
-                    style: GoogleFonts.aBeeZee(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            ...orderSummary.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      '${item['name']} x${item['quantity']}',
-                                      style: GoogleFonts.aBeeZee(
-                                        fontSize: 12,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Rs. ${item['price'] * item['quantity']}',
-                                      style: GoogleFonts.aBeeZee(
-                                        fontSize: 12,
-                                        color: Colors.orangeAccent,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }).toList(),
-                            const Divider(color: Colors.white70, thickness: 1),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Total:',
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Text(
-                                  'Rs. $totalAmount',
-                                  style: GoogleFonts.aBeeZee(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.orangeAccent,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // Place Order Button
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const OrderConfirmationPage()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xfff69722),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 40,
-                          vertical: 15,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: Text(
-                        'Place Order',
-                        style: GoogleFonts.aBeeZee(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
     );
   }
-}
 
-// Payment Option Widget
-class PaymentOption extends StatelessWidget {
-  final String title;
-  final String? groupValue;
-  final ValueChanged<String?> onChanged;
+  Widget buildSectionHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Text(
+        title,
+        style: GoogleFonts.aBeeZee(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
 
-  const PaymentOption({
-    super.key,
-    required this.title,
-    required this.groupValue,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget buildGlassyContainer({required Widget child}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
         child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 5),
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.1),
             borderRadius: BorderRadius.circular(20),
@@ -311,18 +179,115 @@ class PaymentOption extends StatelessWidget {
               color: Colors.white.withOpacity(0.2),
             ),
           ),
-          child: RadioListTile<String>(
-            value: title,
-            groupValue: groupValue,
-            onChanged: onChanged,
-            title: Text(
-              title,
-              style: GoogleFonts.aBeeZee(fontSize: 16, color: Colors.white),
-            ),
-            activeColor: Colors.orangeAccent,
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  Widget buildPaymentOptions() {
+    return Column(
+      children: [
+        buildPaymentOption('Cash on Delivery'),
+        buildPaymentOption('Credit/Debit Card'),
+        buildPaymentOption('UPI'),
+      ],
+    );
+  }
+
+  Widget buildPaymentOption(String title) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedPaymentMethod = title;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: BoxDecoration(
+          color: selectedPaymentMethod == title
+              ? Colors.orangeAccent.withOpacity(0.3)
+              : Colors.white.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: Colors.white.withOpacity(0.2),
+          ),
+        ),
+        child: ListTile(
+          leading: Icon(
+            selectedPaymentMethod == title
+                ? Icons.radio_button_checked
+                : Icons.radio_button_unchecked,
+            color: Colors.orangeAccent,
+          ),
+          title: Text(
+            title,
+            style: GoogleFonts.aBeeZee(fontSize: 16, color: Colors.white),
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildOrderSummary() {
+    return buildGlassyContainer(
+      child: Column(
+        children: [
+          ...orderSummary.map((item) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${item['name']} x${item['quantity']}',
+                    style: GoogleFonts.aBeeZee(
+                      fontSize: 12,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'Rs. ${item['price'] * item['quantity']}',
+                    style: GoogleFonts.aBeeZee(
+                      fontSize: 12,
+                      color: Colors.orangeAccent,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
+          const Divider(color: Colors.white70, thickness: 1),
+          buildPriceRow('Subtotal:', subtotal),
+          buildPriceRow('Discount (10%):', -discount),
+          const Divider(color: Colors.white70, thickness: 1),
+          buildPriceRow('Total:', totalAmount, isBold: true),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPriceRow(String label, double amount, {bool isBold = false}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label,
+          style: GoogleFonts.aBeeZee(
+              fontSize: isBold ? 16 : 14, color: Colors.white),
+        ),
+        Text(
+          'Rs. ${amount.toStringAsFixed(0)}',
+          style: GoogleFonts.aBeeZee(
+            fontSize: isBold ? 16 : 14,
+            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+            color: Colors.orangeAccent,
+          ),
+        ),
+      ],
     );
   }
 }

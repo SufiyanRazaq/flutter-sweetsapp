@@ -26,7 +26,6 @@ class TrackOrderPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -36,14 +35,11 @@ class TrackOrderPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Order Tracking Content
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Order ID and Date
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: BackdropFilter(
@@ -81,10 +77,7 @@ class TrackOrderPage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
-                // Order Status
                 Text(
                   'Order Status',
                   style: GoogleFonts.aBeeZee(
@@ -94,8 +87,6 @@ class TrackOrderPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // Status Timeline
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -136,7 +127,6 @@ class TrackOrderPage extends StatelessWidget {
     );
   }
 
-  // Status Tile Widget
   Widget buildStatusTile(BuildContext context, String title, String subtitle,
       {required bool isCompleted}) {
     return ClipRRect(

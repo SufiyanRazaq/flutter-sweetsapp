@@ -26,7 +26,6 @@ class AboutContactPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -36,21 +35,18 @@ class AboutContactPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Content
           SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // About Us Section
                 buildSectionHeader('About Us'),
                 buildGlassyContainer(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Welcome to New Sheerin Mahal!',
+                        'Welcome to Sweets App!',
                         style: GoogleFonts.pacifico(
                           fontSize: 20,
                           color: Colors.orangeAccent,
@@ -59,7 +55,7 @@ class AboutContactPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        'New Sheerin Mahal is your go-to destination for premium mithai and sweets, crafted with love and tradition. For decades, we have been serving happiness in every bite, ensuring quality, taste, and customer satisfaction.',
+                        'New Sweets App is your go-to destination for premium sweets, crafted with love and tradition. For decades, we have been serving happiness in every bite, ensuring quality, taste, and customer satisfaction.',
                         style: GoogleFonts.aBeeZee(
                           fontSize: 16,
                           color: Colors.white70,
@@ -69,10 +65,7 @@ class AboutContactPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
-                // Contact Us Section
                 buildSectionHeader('Contact Us'),
                 buildGlassyContainer(
                   child: Column(
@@ -93,13 +86,13 @@ class AboutContactPage extends StatelessWidget {
                       buildContactItem(
                         icon: Icons.email,
                         title: 'Email Us',
-                        subtitle: 'support@sheerinmahal.com',
+                        subtitle: 'me@sufiyanrazaq.com',
                       ),
                       const SizedBox(height: 10),
                       buildContactItem(
                         icon: Icons.language,
                         title: 'Website',
-                        subtitle: 'www.sheerinmahal.com',
+                        subtitle: 'www.sufiyanrazaq.com',
                       ),
                     ],
                   ),
@@ -112,7 +105,6 @@ class AboutContactPage extends StatelessWidget {
     );
   }
 
-  // Section Header Widget
   Widget buildSectionHeader(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -127,7 +119,6 @@ class AboutContactPage extends StatelessWidget {
     );
   }
 
-  // Glassy Container Widget
   Widget buildGlassyContainer({required Widget child}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -148,7 +139,6 @@ class AboutContactPage extends StatelessWidget {
     );
   }
 
-  // Contact Item Widget
   Widget buildContactItem(
       {required IconData icon,
       required String title,

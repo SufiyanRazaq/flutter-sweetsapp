@@ -12,7 +12,6 @@ class OrderConfirmationPage extends StatelessWidget {
       backgroundColor: const Color(0xfff9f6f1),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -22,8 +21,6 @@ class OrderConfirmationPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Glassy Content
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,7 +44,6 @@ class OrderConfirmationPage extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Thank You Icon
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.orangeAccent.withOpacity(0.2),
@@ -61,8 +57,6 @@ class OrderConfirmationPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 20),
-
-                          // Thank You Message
                           Text(
                             'Thank You!',
                             style: GoogleFonts.pacifico(
@@ -87,8 +81,6 @@ class OrderConfirmationPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 20),
-
-                          // Order Tracking Button
                           ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -117,8 +109,6 @@ class OrderConfirmationPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 10),
-
-                          // Back to Home Button
                           TextButton(
                             onPressed: () {
                               Navigator.popUntil(

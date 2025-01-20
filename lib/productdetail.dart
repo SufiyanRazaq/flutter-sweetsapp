@@ -22,7 +22,6 @@ class ProductDetailsPage extends StatelessWidget {
       backgroundColor: const Color(0xfff9f6f1),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -32,12 +31,9 @@ class ProductDetailsPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Glassy Product Details
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back Button
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 20),
                 child: IconButton(
@@ -47,8 +43,6 @@ class ProductDetailsPage extends StatelessWidget {
                   },
                 ),
               ),
-
-              // Product Image
               Center(
                 child: Container(
                   width: 250,
@@ -56,7 +50,7 @@ class ProductDetailsPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                      image: AssetImage(imagePath), // Dynamic image
+                      image: AssetImage(imagePath),
                       fit: BoxFit.cover,
                     ),
                     boxShadow: [
@@ -69,10 +63,7 @@ class ProductDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(height: 20),
-
-              // Product Info
               Expanded(
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
@@ -93,7 +84,6 @@ class ProductDetailsPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Product Name and Price
                           Text(
                             productName,
                             style: GoogleFonts.pacifico(
@@ -110,10 +100,7 @@ class ProductDetailsPage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
                           const SizedBox(height: 15),
-
-                          // Product Description
                           Text(
                             description,
                             style: GoogleFonts.aBeeZee(
@@ -122,15 +109,10 @@ class ProductDetailsPage extends StatelessWidget {
                               height: 1.5,
                             ),
                           ),
-
                           const SizedBox(height: 20),
-
-                          // Add to Cart Button
                           Center(
                             child: ElevatedButton(
-                              onPressed: () {
-                                // Add to Cart Logic
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xfff69722),
                                 padding: const EdgeInsets.symmetric(
@@ -157,56 +139,6 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// Quantity Selector Widget
-class QuantitySelector extends StatefulWidget {
-  const QuantitySelector({super.key});
-
-  @override
-  _QuantitySelectorState createState() => _QuantitySelectorState();
-}
-
-class _QuantitySelectorState extends State<QuantitySelector> {
-  int _quantity = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.3)),
-      ),
-      child: Row(
-        children: [
-          IconButton(
-            icon: const Icon(Icons.remove, color: Colors.white),
-            onPressed: () {
-              setState(() {
-                if (_quantity > 1) _quantity--;
-              });
-            },
-          ),
-          Text(
-            '$_quantity',
-            style: GoogleFonts.aBeeZee(
-              fontSize: 18,
-              color: Colors.white,
-            ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.add, color: Colors.white),
-            onPressed: () {
-              setState(() {
-                _quantity++;
-              });
-            },
           ),
         ],
       ),

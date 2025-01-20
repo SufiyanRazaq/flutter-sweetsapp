@@ -50,7 +50,6 @@ class OrderHistoryPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -60,8 +59,6 @@ class OrderHistoryPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Order List
           ListView.builder(
             padding: const EdgeInsets.all(20),
             itemCount: orders.length,
@@ -84,7 +81,6 @@ class OrderHistoryPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Order ID and Date
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -106,8 +102,6 @@ class OrderHistoryPage extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 10),
-
-                        // Items
                         Text(
                           'Items: ${order['items'].join(', ')}',
                           style: GoogleFonts.aBeeZee(
@@ -116,8 +110,6 @@ class OrderHistoryPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 5),
-
-                        // Status and Total
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -139,16 +131,11 @@ class OrderHistoryPage extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         const SizedBox(height: 10),
-
-                        // Reorder Button
                         Align(
                           alignment: Alignment.centerRight,
                           child: ElevatedButton(
-                            onPressed: () {
-                              // Logic to reorder
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xfff69722),
                               padding: const EdgeInsets.symmetric(

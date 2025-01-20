@@ -12,7 +12,6 @@ class SignupPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -22,8 +21,6 @@ class SignupPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Glassy Signup Form
           Center(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(30),
@@ -57,7 +54,7 @@ class SignupPage extends StatelessWidget {
                           curve: Curves.easeInOut,
                           padding: const EdgeInsets.all(8),
                           child: const CircleAvatar(
-                            backgroundImage: AssetImage("assets/logo.jpg"),
+                            backgroundImage: AssetImage("assets/logo.webp"),
                             radius: 55,
                           ),
                         ),
@@ -75,43 +72,32 @@ class SignupPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-
-                        // Full Name TextField
                         buildTextField(
                           icon: Icons.person,
                           hintText: 'Full Name',
                           isPassword: false,
                         ),
                         const SizedBox(height: 15),
-
-                        // Email TextField
                         buildTextField(
                           icon: Icons.email_rounded,
                           hintText: 'Email Address',
                           isPassword: false,
                         ),
                         const SizedBox(height: 15),
-
-                        // Password TextField
                         buildTextField(
                           icon: Icons.lock_rounded,
                           hintText: 'Password',
                           isPassword: true,
                         ),
                         const SizedBox(height: 15),
-
-                        // Confirm Password TextField
                         buildTextField(
                           icon: Icons.lock_rounded,
                           hintText: 'Confirm Password',
                           isPassword: true,
                         ),
                         const SizedBox(height: 30),
-
-                        // Signup Button
                         ElevatedButton(
                           onPressed: () {
-                            // Navigate to HomePage or further verification
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) => const HomePage(),
@@ -136,10 +122,7 @@ class SignupPage extends StatelessWidget {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 15),
-
-                        // Login Prompt
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -178,7 +161,6 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-  // Reusable TextField Widget
   Widget buildTextField({
     required IconData icon,
     required String hintText,

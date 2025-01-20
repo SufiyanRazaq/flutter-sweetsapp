@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class NotificationsPage extends StatelessWidget {
   final List<Map<String, dynamic>> notifications = [
     {
-      'title': '50% Off on All Mithai!',
+      'title': '50% Off on All Sweets!',
       'message':
           'Celebrate this festive season with half the price on all sweets. Offer valid till Jan 15, 2025.',
       'type': 'Promotional',
@@ -14,12 +14,12 @@ class NotificationsPage extends StatelessWidget {
     {
       'title': 'Your Order #123456789 is Delivered',
       'message':
-          'We hope you enjoyed your Mithai! Thank you for shopping with us.',
+          'We hope you enjoyed your Sweets! Thank you for shopping with us.',
       'type': 'Order Update',
       'time': '1 day ago',
     },
     {
-      'title': 'New Arrivals: Winter Special Mithai',
+      'title': 'New Arrivals: Winter Special Sweets',
       'message':
           'Try our new Gajar Halwa and other winter delicacies now available in the store.',
       'type': 'Promotional',
@@ -50,7 +50,6 @@ class NotificationsPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -60,8 +59,6 @@ class NotificationsPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Notifications List
           notifications.isEmpty
               ? Center(
                   child: Text(
@@ -94,7 +91,6 @@ class NotificationsPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Notification Title
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -117,8 +113,6 @@ class NotificationsPage extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(height: 10),
-
-                              // Notification Message
                               Text(
                                 notification['message'],
                                 style: GoogleFonts.aBeeZee(
@@ -126,10 +120,7 @@ class NotificationsPage extends StatelessWidget {
                                   color: Colors.white70,
                                 ),
                               ),
-
                               const SizedBox(height: 10),
-
-                              // Notification Type
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: Container(

@@ -52,7 +52,6 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Stack(
         children: [
-          // Animated Gradient Background
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
@@ -74,15 +73,11 @@ class _SplashScreenState extends State<SplashScreen>
               );
             },
           ),
-
-          // Floating Particles
           Positioned.fill(
             child: CustomPaint(
               painter: ParticlePainter(),
             ),
           ),
-
-          // Glass Effect Overlay
           Center(
             child: FadeTransition(
               opacity: _animation,
@@ -117,13 +112,13 @@ class _SplashScreenState extends State<SplashScreen>
                           curve: Curves.easeInOut,
                           padding: const EdgeInsets.all(8),
                           child: const CircleAvatar(
-                            backgroundImage: AssetImage("assets/logo.jpg"),
+                            backgroundImage: AssetImage("assets/logo.webp"),
                             radius: 65,
                           ),
                         ),
                         const SizedBox(height: 15),
                         Text(
-                          'New Sheerin Mahal',
+                          'New Sweets App',
                           style: GoogleFonts.pacifico(
                             fontSize: 30,
                             color: Colors.white,
@@ -138,7 +133,8 @@ class _SplashScreenState extends State<SplashScreen>
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Har Khushi Hai Sheerin',
+                          'Savor the Sweetness, Share the Joy!',
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.aBeeZee(
                             fontSize: 18,
                             color: Colors.white70,
@@ -158,7 +154,6 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-// Particle Effect Painter
 class ParticlePainter extends CustomPainter {
   final Random random = Random();
 

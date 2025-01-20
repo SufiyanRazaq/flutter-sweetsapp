@@ -4,17 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FavoritesPage extends StatelessWidget {
   final List<Map<String, dynamic>> favorites = [
-    {
-      'name': 'Delicious Gulab Jamun',
-      'price': 250,
-      'image': 'assets/product2.png'
-    },
-    {'name': 'Crispy Jalebi', 'price': 300, 'image': 'assets/product3.png'},
-    {
-      'name': 'Special Motichoor Laddu',
-      'price': 400,
-      'image': 'assets/product4.png'
-    },
+    {'name': 'Gulab Jamun', 'price': 250, 'image': 'assets/product1.webp'},
+    {'name': 'Jalebi', 'price': 300, 'image': 'assets/product2.webp'},
+    {'name': ' Laddu', 'price': 400, 'image': 'assets/product3.webp'},
   ];
 
   FavoritesPage({super.key});
@@ -40,7 +32,6 @@ class FavoritesPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -50,8 +41,6 @@ class FavoritesPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Favorites List
           favorites.isEmpty
               ? Center(
                   child: Text(
@@ -83,7 +72,6 @@ class FavoritesPage extends StatelessWidget {
                           ),
                           child: Row(
                             children: [
-                              // Mithai Image
                               Container(
                                 width: 80,
                                 height: 80,
@@ -96,8 +84,6 @@ class FavoritesPage extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(width: 15),
-
-                              // Mithai Details
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,14 +107,10 @@ class FavoritesPage extends StatelessWidget {
                                   ],
                                 ),
                               ),
-
-                              // Remove Button
                               IconButton(
                                 icon: const Icon(Icons.delete,
                                     color: Colors.redAccent),
-                                onPressed: () {
-                                  // Logic to remove from wishlist
-                                },
+                                onPressed: () {},
                               ),
                             ],
                           ),

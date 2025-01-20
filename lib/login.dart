@@ -12,7 +12,6 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -22,8 +21,6 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-
-          // Glassy Login Form
           Center(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(30),
@@ -57,7 +54,7 @@ class LoginPage extends StatelessWidget {
                           curve: Curves.easeInOut,
                           padding: const EdgeInsets.all(8),
                           child: const CircleAvatar(
-                            backgroundImage: AssetImage("assets/logo.jpg"),
+                            backgroundImage: AssetImage("assets/logo.webp"),
                             radius: 55,
                           ),
                         ),
@@ -75,24 +72,18 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-
-                        // Email TextField
                         buildTextField(
                           icon: Icons.email_rounded,
                           hintText: 'Email Address',
                           isPassword: false,
                         ),
                         const SizedBox(height: 15),
-
-                        // Password TextField
                         buildTextField(
                           icon: Icons.lock_rounded,
                           hintText: 'Password',
                           isPassword: true,
                         ),
                         const SizedBox(height: 10),
-
-                        // Forgot Password
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
@@ -106,10 +97,7 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 10),
-
-                        // Login Button
                         ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
@@ -136,10 +124,7 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 10),
-
-                        // Signup Prompt
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -178,7 +163,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  // Reusable TextField Widget
   Widget buildTextField({
     required IconData icon,
     required String hintText,

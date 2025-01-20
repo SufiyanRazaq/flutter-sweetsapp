@@ -2,28 +2,25 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class UserProfilePage extends StatelessWidget {
+class UserProfilePage extends StatefulWidget {
   const UserProfilePage({super.key});
+
+  @override
+  State<UserProfilePage> createState() => _UserProfilePageState();
+}
+
+class _UserProfilePageState extends State<UserProfilePage> {
+  String userName = "Sufiyan";
+  String email = "me@sufiyanrazaq.com";
+  String phoneNumber = "+92 300 1234567";
+  String address = "123 Street, Karachi, Pakistan";
+  String paymentMethod = "Visa **** **** **** 1234";
+  int totalOrders = 15;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xfff9f6f1),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: const Color(0xff581f59),
-        title: Text(
-          'My Profile',
-          style: GoogleFonts.aBeeZee(fontSize: 20, color: Colors.white),
-        ),
-        centerTitle: true,
-        elevation: 0,
-      ),
       body: Stack(
         children: [
           // Background Gradient
@@ -37,35 +34,49 @@ class UserProfilePage extends StatelessWidget {
             ),
           ),
 
-          // Profile Content
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                // User Avatar and Details
-                Center(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                      child: Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
-                          ),
-                        ),
+          Column(
+            children: [
+              // App Bar
+              Padding(
+                padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    Text(
+                      'My Profile',
+                      style: GoogleFonts.aBeeZee(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(width: 40),
+                  ],
+                ),
+              ),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      // User Info Card
+                      buildGlassyContainer(
                         child: Column(
                           children: [
                             const CircleAvatar(
                               radius: 60,
-                              backgroundImage: AssetImage('assets/user.png'),
+                              backgroundImage: AssetImage('assets/user.webp'),
                             ),
                             const SizedBox(height: 15),
                             Text(
-                              'John Doe',
+                              userName,
                               style: GoogleFonts.pacifico(
                                 fontSize: 24,
                                 color: Colors.white,
@@ -79,107 +90,124 @@ class UserProfilePage extends StatelessWidget {
                             ),
                             const SizedBox(height: 5),
                             Text(
-                              'johndoe@example.com',
+                              email,
                               style: GoogleFonts.aBeeZee(
                                 fontSize: 16,
                                 color: Colors.white70,
                               ),
                             ),
+                            const SizedBox(height: 5),
+                            Text(
+                              phoneNumber,
+                              style: GoogleFonts.aBeeZee(
+                                fontSize: 14,
+                                color: Colors.white70,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              "Total Orders: $totalOrders",
+                              style: GoogleFonts.aBeeZee(
+                                fontSize: 14,
+                                color: Colors.orangeAccent,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
+
+                      const SizedBox(height: 20),
+
+                      // Saved Addresses
+                      buildSectionTitle('Saved Address'),
+                      const SizedBox(height: 10),
+                      buildInfoCard(
+                        title: "Home",
+                        subtitle: address,
+                        icon: Icons.home,
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Payment Methods
+                      buildSectionTitle('Payment Methods'),
+                      const SizedBox(height: 10),
+                      buildInfoCard(
+                        title: "Visa Card",
+                        subtitle: paymentMethod,
+                        icon: Icons.credit_card,
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Settings
+                      buildSectionTitle('Settings'),
+                      const SizedBox(height: 10),
+                      buildInfoCard(
+                        title: "Privacy & Security",
+                        subtitle: "Manage your account settings",
+                        icon: Icons.lock,
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Edit Profile Button
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xfff69722),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 50,
+                            vertical: 15,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: Text(
+                          'Edit Profile',
+                          style: GoogleFonts.aBeeZee(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Logout Button
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.redAccent,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 50,
+                            vertical: 15,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: Text(
+                          'Logout',
+                          style: GoogleFonts.aBeeZee(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-
-                const SizedBox(height: 20),
-
-                // Saved Addresses
-                buildSectionTitle('Saved Addresses'),
-                buildInfoCard(
-                  context,
-                  title: 'Home',
-                  subtitle: '123 Street, Karachi, Pakistan',
-                  icon: Icons.home,
-                  onEdit: () {
-                    // Navigate to edit address
-                  },
-                ),
-
-                const SizedBox(height: 20),
-
-                // Payment Methods
-                buildSectionTitle('Payment Methods'),
-                buildInfoCard(
-                  context,
-                  title: 'Visa Card',
-                  subtitle: '**** **** **** 1234',
-                  icon: Icons.credit_card,
-                  onEdit: () {
-                    // Navigate to edit payment method
-                  },
-                ),
-
-                const SizedBox(height: 20),
-
-                // Edit Profile Button
-                ElevatedButton(
-                  onPressed: () {
-                    // Navigate to edit profile page
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xfff69722),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 50,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(
-                    'Edit Profile',
-                    style: GoogleFonts.aBeeZee(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 20),
-
-                // Logout Button
-                ElevatedButton(
-                  onPressed: () {
-                    // Add logout logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 50,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(
-                    'Logout',
-                    style: GoogleFonts.aBeeZee(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 
-  // Section Title Widget
   Widget buildSectionTitle(String title) {
     return Align(
       alignment: Alignment.centerLeft,
@@ -194,13 +222,31 @@ class UserProfilePage extends StatelessWidget {
     );
   }
 
-  // Info Card Widget
-  Widget buildInfoCard(
-    BuildContext context, {
+  Widget buildGlassyContainer({required Widget child}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.2),
+            ),
+          ),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  Widget buildInfoCard({
     required String title,
     required String subtitle,
     required IconData icon,
-    required VoidCallback onEdit,
   }) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -243,7 +289,7 @@ class UserProfilePage extends StatelessWidget {
               ),
               IconButton(
                 icon: const Icon(Icons.edit, color: Colors.white70),
-                onPressed: onEdit,
+                onPressed: () {},
               ),
             ],
           ),
