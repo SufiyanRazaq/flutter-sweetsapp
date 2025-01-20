@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
-
 import 'package:sweetsapp/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -52,6 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Stack(
         children: [
+          // Background Gradient
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
@@ -73,11 +73,18 @@ class _SplashScreenState extends State<SplashScreen>
               );
             },
           ),
+
+          // Ensuring the Particle Effect is rendered properly
           Positioned.fill(
-            child: CustomPaint(
-              painter: ParticlePainter(),
+            child: Container(
+              color: Colors.transparent,
+              child: CustomPaint(
+                painter: ParticlePainter(),
+              ),
             ),
           ),
+
+          // Animated Logo and Text
           Center(
             child: FadeTransition(
               opacity: _animation,
@@ -160,14 +167,14 @@ class ParticlePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.2)
+      ..color = Colors.white.withOpacity(0.5)
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 2;
 
     for (int i = 0; i < 100; i++) {
       final dx = random.nextDouble() * size.width;
       final dy = random.nextDouble() * size.height;
-      canvas.drawCircle(Offset(dx, dy), random.nextDouble() * 2, paint);
+      canvas.drawCircle(Offset(dx, dy), random.nextDouble() * 3, paint);
     }
   }
 
