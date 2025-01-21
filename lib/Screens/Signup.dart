@@ -1,11 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sweetsapp/HomePage.dart';
-import 'package:sweetsapp/Signup.dart';
+import 'package:sweetsapp/Screens/HomePage.dart';
+import 'package:sweetsapp/Screens/login.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: Container(
                   width: 350,
-                  height: 500,
+                  height: 600,
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(30),
@@ -59,9 +59,9 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Welcome Back!',
+                          'Create Account',
                           style: GoogleFonts.pacifico(
-                            fontSize: 32,
+                            fontSize: 30,
                             color: Colors.white,
                             shadows: [
                               Shadow(
@@ -71,7 +71,13 @@ class LoginPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
+                        buildTextField(
+                          icon: Icons.person,
+                          hintText: 'Full Name',
+                          isPassword: false,
+                        ),
+                        const SizedBox(height: 15),
                         buildTextField(
                           icon: Icons.email_rounded,
                           hintText: 'Email Address',
@@ -83,67 +89,59 @@ class LoginPage extends StatelessWidget {
                           hintText: 'Password',
                           isPassword: true,
                         ),
-                        const SizedBox(height: 10),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Forgot Password?',
-                              style: GoogleFonts.aBeeZee(
-                                fontSize: 14,
-                                color: Colors.white70,
-                              ),
-                            ),
-                          ),
+                        const SizedBox(height: 15),
+                        buildTextField(
+                          icon: Icons.lock_rounded,
+                          hintText: 'Confirm Password',
+                          isPassword: true,
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 30),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                  builder: (context) => const HomePage(),
-                                ),
-                                (route) => route.isFirst);
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xfff69722),
                             padding: const EdgeInsets.symmetric(
                               horizontal: 60,
-                              vertical: 12,
+                              vertical: 18,
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
                           child: Text(
-                            'Login',
+                            'Sign Up',
                             style: GoogleFonts.aBeeZee(
-                              fontSize: 20,
+                              fontSize: 17,
                               color: Colors.white,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 15),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Don\'t have an account?',
+                              'Already have an account?',
                               style: GoogleFonts.aBeeZee(
                                 color: Colors.white70,
                               ),
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
+                                Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => const SignupPage(),
+                                    builder: (context) => const LoginPage(),
                                   ),
                                 );
                               },
                               child: Text(
-                                'Sign Up',
+                                'Login',
                                 style: GoogleFonts.aBeeZee(
                                   color: Colors.orangeAccent,
                                 ),
@@ -180,7 +178,7 @@ class LoginPage extends StatelessWidget {
         hintStyle: const TextStyle(color: Colors.white54),
         filled: true,
         fillColor: Colors.white.withOpacity(0.1),
-        contentPadding: const EdgeInsets.symmetric(vertical: 18),
+        contentPadding: const EdgeInsets.symmetric(vertical: 10),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.white.withOpacity(0.3),

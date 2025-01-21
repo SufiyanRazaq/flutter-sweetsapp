@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sweetsapp/Favourite.dart';
-import 'package:sweetsapp/about.dart';
-import 'package:sweetsapp/notification.dart';
-import 'package:sweetsapp/orderhistory.dart';
-import 'package:sweetsapp/profile.dart';
+import 'package:sweetsapp/Screens/Favourite.dart';
+import 'package:sweetsapp/Screens/about.dart';
+import 'package:sweetsapp/Screens/notification.dart';
+import 'package:sweetsapp/Screens/orderhistory.dart';
+import 'package:sweetsapp/Screens/profile.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});

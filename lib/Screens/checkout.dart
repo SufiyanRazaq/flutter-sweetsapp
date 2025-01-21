@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sweetsapp/orderconfim.dart';
+import 'package:sweetsapp/Screens/orderconfim.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});

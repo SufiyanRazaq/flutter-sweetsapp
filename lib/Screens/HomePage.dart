@@ -5,7 +5,7 @@ import 'package:sweetsapp/Widgets/Carousel.dart';
 import 'package:sweetsapp/Widgets/Categories.dart';
 import 'package:sweetsapp/Widgets/drawer.dart';
 import 'package:sweetsapp/Widgets/productlist.dart';
-import 'package:sweetsapp/cart.dart';
+import 'package:sweetsapp/Screens/cart.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
 class HomePage extends StatefulWidget {

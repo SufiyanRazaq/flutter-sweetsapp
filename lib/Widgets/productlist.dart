@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sweetsapp/productdetail.dart';
+import 'package:sweetsapp/Screens/productdetail.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({super.key});
