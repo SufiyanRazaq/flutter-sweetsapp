@@ -51,7 +51,6 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Stack(
         children: [
-          // Background Gradient
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
@@ -73,8 +72,6 @@ class _SplashScreenState extends State<SplashScreen>
               );
             },
           ),
-
-          // Ensuring the Particle Effect is rendered properly
           Positioned.fill(
             child: Container(
               color: Colors.transparent,
@@ -83,8 +80,6 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
           ),
-
-          // Animated Logo and Text
           Center(
             child: FadeTransition(
               opacity: _animation,

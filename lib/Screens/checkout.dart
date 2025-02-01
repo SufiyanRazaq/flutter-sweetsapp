@@ -32,7 +32,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
       backgroundColor: const Color(0xfff9f6f1),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -42,10 +41,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ),
             ),
           ),
-
           Column(
             children: [
-              // Header
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
                 child: Row(
@@ -69,7 +66,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ],
                 ),
               ),
-
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(20),
@@ -99,20 +95,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           ],
                         ),
                       ),
-
                       const SizedBox(height: 20),
-
                       buildSectionHeader('Payment Method'),
                       buildPaymentOptions(),
-
                       const SizedBox(height: 20),
-
                       buildSectionHeader('Order Summary'),
                       buildOrderSummary(),
-
                       const SizedBox(height: 20),
-
-                      // Place Order Button
                       Center(
                         child: ElevatedButton(
                           onPressed: () {

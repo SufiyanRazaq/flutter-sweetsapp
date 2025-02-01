@@ -1,4 +1,4 @@
-package com.example.sweetsapp
+package com.sufiyan.sweetsapp
 
 import io.flutter.embedding.android.FlutterActivity
 

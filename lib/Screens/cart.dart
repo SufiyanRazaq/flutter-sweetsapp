@@ -22,7 +22,7 @@ class _CartPageState extends State<CartPage> {
         0, (sum, item) => sum + item['price'] * item['quantity']);
   }
 
-  double get discount => subtotal * 0.1; // 10% Discount
+  double get discount => subtotal * 0.1;
   double get totalAmount => subtotal - discount;
 
   @override
@@ -31,7 +31,6 @@ class _CartPageState extends State<CartPage> {
       backgroundColor: const Color(0xfff9f6f1),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -41,10 +40,8 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
           ),
-
           Column(
             children: [
-              // Header
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
                 child: Row(
@@ -68,8 +65,6 @@ class _CartPageState extends State<CartPage> {
                   ],
                 ),
               ),
-
-              // Cart Items List
               Expanded(
                 child: ListView.builder(
                   itemCount: _cartItems.length,
@@ -160,8 +155,6 @@ class _CartPageState extends State<CartPage> {
                   },
                 ),
               ),
-
-              // Promo Code Section
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ClipRRect(
@@ -203,10 +196,7 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 10),
-
-              // Price Summary & Checkout Button
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -261,7 +251,6 @@ class _CartPageState extends State<CartPage> {
     );
   }
 
-  // Price Row Widget
   Widget _buildPriceRow(String label, String amount, {bool isBold = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),

@@ -23,7 +23,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
       backgroundColor: const Color(0xfff9f6f1),
       body: Stack(
         children: [
-          // Background Gradient
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -33,10 +32,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
             ),
           ),
-
           Column(
             children: [
-              // App Bar
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
                 child: Row(
@@ -60,13 +57,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ],
                 ),
               ),
-
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      // User Info Card
                       buildGlassyContainer(
                         child: Column(
                           children: [
@@ -116,10 +111,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           ],
                         ),
                       ),
-
                       const SizedBox(height: 20),
-
-                      // Saved Addresses
                       buildSectionTitle('Saved Address'),
                       const SizedBox(height: 10),
                       buildInfoCard(
@@ -127,10 +119,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         subtitle: address,
                         icon: Icons.home,
                       ),
-
                       const SizedBox(height: 20),
-
-                      // Payment Methods
                       buildSectionTitle('Payment Methods'),
                       const SizedBox(height: 10),
                       buildInfoCard(
@@ -138,10 +127,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         subtitle: paymentMethod,
                         icon: Icons.credit_card,
                       ),
-
                       const SizedBox(height: 20),
-
-                      // Settings
                       buildSectionTitle('Settings'),
                       const SizedBox(height: 10),
                       buildInfoCard(
@@ -149,10 +135,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         subtitle: "Manage your account settings",
                         icon: Icons.lock,
                       ),
-
                       const SizedBox(height: 20),
-
-                      // Edit Profile Button
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -173,10 +156,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           ),
                         ),
                       ),
-
                       const SizedBox(height: 20),
-
-                      // Logout Button
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
